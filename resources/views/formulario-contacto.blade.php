@@ -9,16 +9,35 @@
 <body>
     <h1>Formulario de Contacto</h1>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="/contacto-recibe" method="POST">
         @csrf
         <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre"><br>
+        <input type="text" name="nombre" value="{{ old('nombre') }}"><br>
+        @error('nombre')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         
         <label for="correo">Correo:</label>
-        <input type="email" name="correo"><br>
+        <input type="email" name="correo" value="{{ old('correo') }}"><br>
+        @error('correo')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
 
         <label for="mensaje">Mensaje:</label><br>
-        <textarea name="mensaje" cols="30" rows="4"></textarea><br>
+        <textarea name="mensaje" cols="30" rows="4">{{ old('mensaje') }}</textarea><br>
+        @error('mensaje')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <input type="submit" value="Enviar">
     </form>
 </body>

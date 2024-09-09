@@ -1,16 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ContactoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contacto', function() {
-    return view('formulario-contacto');
-});
-
-Route::post('/contacto-recibe', function(Request $request) {
-    dd($request->all(), $request->nombre);
-});
+Route::get('/contacto', [ContactoController::class, 'formulario']);
+Route::post('/contacto-recibe', [ContactoController::class, 'newContact']);
