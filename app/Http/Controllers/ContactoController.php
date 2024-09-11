@@ -28,6 +28,15 @@ class ContactoController extends Controller
         $contacto->mensaje = $request->mensaje;
         $contacto->save();
     
-        return redirect('/contacto');
+        return redirect('/lista');
+    }
+
+    public function lista ()
+    {
+        $mensajes = Contacto::all();
+        // dd($mensajes);
+        return view('lista', compact('mensajes'));
+        // return view('lista', ['mensajes' => $mensajes]);
+        // return view('lista', ['mensajes' => Contacto::all()]);
     }
 }
