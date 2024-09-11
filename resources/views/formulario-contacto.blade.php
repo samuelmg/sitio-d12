@@ -7,7 +7,7 @@
     <title>Contacto</title>
 </head>
 <body>
-    <h1>Formulario de Contacto</h1>
+    <h1>Formulario de Contacto para {{ $tipo_persona }}</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -21,6 +21,12 @@
 
     <form action="/contacto-recibe" method="POST">
         @csrf
+
+        @if ($tipo_persona == 'cliente')
+            <label for="no_cliente">Número de cliente:</label><br>
+            <input type="text" name="no_cliente" id="no_cliente"><br>
+        @endif
+
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" value="{{ old('nombre') }}"><br>
         @error('nombre')

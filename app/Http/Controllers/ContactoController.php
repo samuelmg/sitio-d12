@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 
 class ContactoController extends Controller
 {
-    public function formulario () {
-        return view('formulario-contacto');
+    public function formulario ($tipo_persona = null) {
+        
+        return view('formulario-contacto', compact('tipo_persona'));
+
+        // return view('formulario-contacto', ['tipo_persona' => $tipo_persona]);
     }
 
     public function newContact (Request $request) {
