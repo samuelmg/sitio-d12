@@ -12,4 +12,6 @@ Route::get('/contacto/{tipo_persona?}', [ContactoController::class, 'formulario'
 Route::post('/contacto-recibe', [ContactoController::class, 'newContact']);
 Route::get('lista', [ContactoController::class, 'lista']);
 
-Route::resource('noticia', NoticiaController::class);
+Route::resource('noticia', NoticiaController::class)->parameters([
+    'noticia' => 'noticia'
+]);

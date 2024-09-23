@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('noticias', function (Blueprint $table) {
             $table->id();
+            $table->string('titulo');
+            $table->text('noticia');
+            $table->date('fecha');
+            $table->string('categoria');
             $table->timestamps();
         });
     }
