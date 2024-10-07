@@ -4,9 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Noticia;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class NoticiaController extends Controller
+class NoticiaController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            // 'auth',
+            new Middleware('auth', except: ['index', 'show']),
+            // new Middleware('subscribed', only: ['store']),
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      */

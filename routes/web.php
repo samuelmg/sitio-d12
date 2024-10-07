@@ -15,6 +15,7 @@ Route::get('lista', [ContactoController::class, 'lista']);
 Route::resource('noticia', NoticiaController::class)->parameters([
     'noticia' => 'noticia'
 ]);
+//->middleware('auth');
 
 Route::middleware([
     'auth:sanctum',
