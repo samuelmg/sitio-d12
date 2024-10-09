@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Contacto</title>
-</head>
-<body>
-    <h1>Formulario de Contacto para {{ $tipo_persona }}</h1>
+<x-mi-layout titulo="Formulario de Contacto" :tipo-persona="$tipo_persona ?? ''">
+    {{-- <h1> para {{ $tipo_persona }}</h1> --}}
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -46,5 +38,4 @@
         @enderror
         <input type="submit" value="Enviar">
     </form>
-</body>
-</html>
+</x-mi-layout>
