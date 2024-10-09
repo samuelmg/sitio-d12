@@ -8,5 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Noticia extends Model
 {
     use HasFactory;
-    protected $fillable = ['titulo', 'noticia', 'fecha', 'categoria'];
+    protected $fillable = ['user_id', 'titulo', 'noticia', 'fecha', 'categoria'];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function categorias()
+    {
+        return $this->belongsToMany(Categoria::class);
+    }
 }
