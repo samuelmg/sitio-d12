@@ -206,7 +206,16 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        @include('parciales.user-menu')
+                        @auth
+                            @include('parciales.user-menu')
+                        @endauth
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Login</span>
+                                </a>
+                            </li>
+                        @endguest
 
                     </ul>
 
