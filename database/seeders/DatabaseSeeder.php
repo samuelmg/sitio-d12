@@ -17,7 +17,11 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->withPersonalTeam()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => 'samuel@test.com',
+        ]);
+
+        $this->call([
+            CategoriaSeeder::class,
         ]);
     }
 }
