@@ -25,6 +25,7 @@ class NoticiaController extends Controller implements HasMiddleware
     public function index()
     {
         $noticias = Noticia::all();
+        
         return view('noticias.index-noticias', compact('noticias'));
     }
 
@@ -42,10 +43,9 @@ class NoticiaController extends Controller implements HasMiddleware
     public function store(Request $request)
     {
         // $request->validate([]);
+        Auth::user()->noticias()->create($request->all());
         
-        $request->merge(['user_id' => Auth::id()]);
-
-        Noticia::create($request->all());
+        //Noticia::create($request->all());
 
         return redirect()->route('noticia.index');
     }

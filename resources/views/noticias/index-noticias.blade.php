@@ -20,8 +20,7 @@
                 <th>Titulo</th>
                 <th>Fecha</th>
                 <th>Categoria</th>
-                <th>Creación</th>
-                <th>Edición</th>
+                <th>Usuario</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -36,8 +35,7 @@
                 </td>
                 <td>{{ $noticia->fecha }}</td>
                 <td>{{ $noticia->categoria }}</td>
-                <td>{{ $noticia->created_at }}</td>
-                <td>{{ $noticia->updated_at }}</td>
+                <td>{{ $noticia->user->name }}</td>
                 <td>
                     <a href="{{ route('noticia.edit', $noticia) }}">Editar</a>
                 </td>
