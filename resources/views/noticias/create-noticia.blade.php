@@ -22,10 +22,10 @@
         <textarea name="noticia" cols="30" rows="4">{{ old('noticia') }}</textarea><br>
 
         <label for="categoria">Categoría:</label>
-        <select name="categoria" id="categoria">
-            <option value="Deportes">Deportes</option>
-            <option value="Nacional">Nacional</option>
-            <option value="Internacional">Internacional</option>
+        <select name="categorias[]" id="categoria" multiple>
+            @foreach ($categorias as $categoria)
+                <option value="{{ $categoria->id }}">{{ $categoria->tag }}</option>
+            @endforeach
         </select>
 
         <input type="submit" value="Enviar">

@@ -34,7 +34,11 @@
                     </a>
                 </td>
                 <td>{{ $noticia->fecha }}</td>
-                <td>{{ $noticia->categoria }}</td>
+                <td>
+                    @foreach ($noticia->categorias as $categoria)
+                        {{ $categoria->tag }},
+                    @endforeach
+                </td>
                 <td>{{ $noticia->user->name }}</td>
                 <td>
                     <a href="{{ route('noticia.edit', $noticia) }}">Editar</a>
