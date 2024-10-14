@@ -10,6 +10,13 @@ class Noticia extends Model
     use HasFactory;
     protected $fillable = ['user_id', 'titulo', 'noticia', 'fecha'];
     
+    protected function casts(): array
+    {
+        return [
+            'fecha' => 'date',
+        ];
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
