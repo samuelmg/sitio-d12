@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categoria;
+use App\Models\Noticia;
 use App\Models\User;
+use Database\Factories\CategoriaFactory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,6 +22,12 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'samuel@test.com',
         ]);
+
+        // Noticia::factory(3)->create();
+
+        User::factory(4)
+            ->has(Noticia::factory()->has(Categoria::factory()->count(3))->count(5))
+            ->create();
 
         $this->call([
             CategoriaSeeder::class,
