@@ -27,10 +27,10 @@
         <textarea name="noticia" cols="30" rows="4">{{ old('noticia') ?? $noticia->noticia }}</textarea><br>
 
         <label for="categoria">Categoría:</label>
-        <select name="categoria" id="categoria">
-            <option value="Deportes" @selected($noticia->categoria == 'Deportes')>Deportes</option>
-            <option value="Nacional" @selected($noticia->categoria == 'Nacional')>Nacional</option>
-            <option value="Internacional" @selected($noticia->categoria == 'Internacional')>Internacional</option>
+        <select name="categorias[]" id="categoria" multiple>
+            @foreach ($categorias as $categoria)
+                <option value="{{ $categoria->id }}" @selected(in_array($categoria->id, $noticia->categorias()->pluck('categorias.id')->toArray()))>{{ $categoria->tag }}</option>
+            @endforeach
         </select>
 
         <input type="submit" value="Enviar">
