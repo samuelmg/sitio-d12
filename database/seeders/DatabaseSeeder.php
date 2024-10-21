@@ -18,10 +18,12 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->withPersonalTeam()->create();
 
-        User::factory()->withPersonalTeam()->create([
-            'name' => 'Test User',
-            'email' => 'samuel@test.com',
-        ]);
+        User::factory()->withPersonalTeam()
+            ->has(Noticia::factory()->has(Categoria::factory()->count(3))->count(5))
+            ->create([
+                'name' => 'Test User',
+                'email' => 'usuario@test.com',
+            ]);
 
         // Noticia::factory(3)->create();
 
