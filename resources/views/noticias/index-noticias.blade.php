@@ -41,7 +41,9 @@
                 </td>
                 <td>{{ $noticia->user->name }}</td>
                 <td>
-                    <a href="{{ route('noticia.edit', $noticia) }}">Editar</a>
+                    @can('update', $noticia)
+                        <a href="{{ route('noticia.edit', $noticia) }}">Editar</a>
+                    @endcan
                 </td>
             </tr>
             @endforeach
