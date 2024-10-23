@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NuevaNoticia;
 use App\Models\Categoria;
 use App\Models\Noticia;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class NoticiaController extends Controller implements HasMiddleware
 {
@@ -51,6 +54,12 @@ class NoticiaController extends Controller implements HasMiddleware
         $noticia = Noticia::create($request->all());
 
         $noticia->categorias()->attach($request->categorias);
+
+        // $usuarios = User::pluck('email');
+        // foreach ($usuarios as $usuario) {
+            Mail::to(Auth::user()->email)->send(new NuevaNoticia($noticia));
+        // }
+        
 
         return redirect()->route('noticia.index');
     }
