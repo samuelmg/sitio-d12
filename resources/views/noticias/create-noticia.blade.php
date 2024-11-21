@@ -9,7 +9,7 @@
 <body>
     <h1>Crear noticia</h1>
 
-    <form action="{{ route('noticia.store') }}" method="POST">
+    <form action="{{ route('noticia.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <label for="titulo">Titulo:</label><br>
@@ -27,6 +27,11 @@
                 <option value="{{ $categoria->id }}">{{ $categoria->tag }}</option>
             @endforeach
         </select>
+
+        <br>
+        <label for="archivo">Carga de Archivos</label>
+        <input type="file" name="archivo" id="archivo"">
+        <br>
 
         <input type="submit" value="Enviar">
     </form>

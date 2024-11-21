@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\NuevaNoticia;
+use App\Models\Archivo;
 use App\Models\Categoria;
 use App\Models\Noticia;
 use App\Models\User;
@@ -57,9 +58,15 @@ class NoticiaController extends Controller implements HasMiddleware
 
         // $usuarios = User::pluck('email');
         // foreach ($usuarios as $usuario) {
-            Mail::to(Auth::user()->email)->send(new NuevaNoticia($noticia));
+            // Mail::to(Auth::user()->email)->send(new NuevaNoticia($noticia));
         // }
+
+        $ruta = $request->archivo->store('mis-archivos-privados');
         
+        $noticia->archivos()->create([
+            'ruta' => $ruta,
+            'nombre_original' => $request->archivo->getClientOriginalName(),
+        ]);
 
         return redirect()->route('noticia.index');
     }
@@ -103,5 +110,10 @@ class NoticiaController extends Controller implements HasMiddleware
     {
         $noticia->delete();
         return redirect()->route('noticia.index');
+    }
+
+    public function descargar(Archivo $archivo)
+    {
+        return response()->download(storage_path('app/' . $archivo->ruta));
     }
 }

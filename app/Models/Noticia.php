@@ -28,4 +28,9 @@ class Noticia extends Model
     {
         return $this->belongsToMany(Categoria::class);
     }
+
+    public function archivos()
+    {
+        return $this->hasMany(Archivo::class);
+    }
 }

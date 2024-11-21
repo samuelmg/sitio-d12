@@ -17,6 +17,9 @@ Route::resource('noticia', NoticiaController::class)->parameters([
 ]);
 //->middleware('auth');
 
+Route::get('descargar/{archivo}', [NoticiaController::class, 'descargar'])
+    ->name('archivo.download');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
